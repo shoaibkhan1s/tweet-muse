@@ -33,6 +33,166 @@ export default function Home() {
   const [captionLength, setCaptionLength] = useState("medium");
   const [mood, setMood] = useState("happy");
   const [emojiIntensity, setEmojiIntensity] = useState("minimal");
+
+  // Options arrays
+  const interests = [
+    "Tech", "Funny", "Finance", "Memes", "Motivation", "DevLife", "Gaming",
+    "Cyber Security", "Health", "Education", "Fitness", "Travel", "Food",
+    "Fashion", "Music", "Art", "Sports", "News", "Lifestyle", "AI", "Startups",
+    "Productivity", "Emotional Growth", "Spirituality", "Business", "Marketing", "Books",
+    "Cryptocurrency", "Web3", "Blockchain", "Sustainability", "Mental Health",
+    "Parenting", "Relationships", "Photography", "Movies", "TV Shows", "Anime",
+    "Entrepreneurship", "Career Advice", "Self Improvement", "Science", "History",
+    "DIY Projects", "Pets", "Adventure", "Pop Culture", "Gadgets", "Space Exploration",
+    "Social Media", "Fitness Challenges"
+  ];
+
+  const captionStyles = [
+    { value: "motivational", label: "Motivational Speaker" },
+    { value: "funny", label: "Funny Tone" },
+    { value: "savage", label: "Savage" },
+    { value: "weird", label: "Weirdly Cool" },
+    { value: "chill", label: "Chill & Relatable" },
+    { value: "meme-lord", label: "Meme-Lord" },
+    { value: "professor-vibes", label: "Professor Vibes" },
+    { value: "soft-aesthetic", label: "Soft Aesthetic" },
+    { value: "future-forward", label: "Future-Forward" },
+    { value: "hustle-culture", label: "Hustle Culture" },
+    { value: "minimalist", label: "Minimalist" },
+    { value: "ceo-grindset", label: "CEO Grindset" },
+    { value: "growth-guru", label: "Growth Guru" },
+    { value: "page-turner", label: "Page-Turner" },
+    { value: "poetic", label: "Poetic & Lyrical" },
+    { value: "nerdy", label: "Nerdy & Geeky" },
+    { value: "retro", label: "Retro Vibes" },
+    { value: "edgy", label: "Edgy & Bold" },
+    { value: "wholesome", label: "Wholesome & Heartfelt" },
+    { value: "sarcastic", label: "Sarcastic & Witty" },
+    { value: "dreamy", label: "Dreamy & Imaginative" },
+    { value: "professional", label: "Professional & Polished" },
+    { value: "youthful", label: "Youthful & Energetic" },
+    { value: "mystical", label: "Mystical & Spiritual" },
+    { value: "epic", label: "Epic & Cinematic" }
+  ];
+
+  const genders = [
+    { value: "male", label: "Male" },
+    { value: "female", label: "Female" },
+    { value: "neutral", label: "Gender Neutral" },
+    { value: "non-binary", label: "Non-Binary" },
+    { value: "inclusive", label: "Inclusive (No Pronouns)" },
+    { value: "male-leaning", label: "Male-Leaning" },
+    { value: "female-leaning", label: "Female-Leaning" }
+  ];
+
+  const languages = [
+    { value: "english", label: "English" },
+    { value: "hindi", label: "Hindi" },
+    { value: "spanish", label: "Spanish" },
+    { value: "hinglish", label: "Hinglish" },
+    { value: "french", label: "French" },
+    { value: "german", label: "German" },
+    { value: "chinese", label: "Chinese (Mandarin)" },
+    { value: "punjabi", label: "Punjabi" },
+    { value: "japanese", label: "Japanese" },
+    { value: "russian", label: "Russian" },
+    { value: "arabic", label: "Arabic" },
+    { value: "portuguese", label: "Portuguese" },
+    { value: "italian", label: "Italian" },
+    { value: "bengali", label: "Bengali" },
+    { value: "urdu", label: "Urdu" },
+    { value: "turkish", label: "Turkish" },
+    { value: "korean", label: "Korean" },
+    { value: "persian", label: "Persian" },
+    { value: "swahili", label: "Swahili" },
+    { value: "dutch", label: "Dutch" },
+    { value: "greek", label: "Greek" },
+    { value: "thai", label: "Thai" },
+    { value: "polish", label: "Polish" },
+    { value: "romanian", label: "Romanian" },
+    { value: "hungarian", label: "Hungarian" },
+    { value: "czech", label: "Czech" },
+    { value: "hebrew", label: "Hebrew" },
+    { value: "indonesian", label: "Indonesian" },
+    { value: "malay", label: "Malay" },
+    { value: "vietnamese", label: "Vietnamese" },
+    { value: "filipino", label: "Filipino" },
+    { value: "swedish", label: "Swedish" },
+    { value: "tamil", label: "Tamil" },
+    { value: "telugu", label: "Telugu" },
+    { value: "marathi", label: "Marathi" },
+    { value: "gujarati", label: "Gujarati" },
+    { value: "kannada", label: "Kannada" },
+    { value: "malayalam", label: "Malayalam" },
+    { value: "odia", label: "Odia" },
+    { value: "assamese", label: "Assamese" },
+    { value: "sindhi", label: "Sindhi" },
+    { value: "nepali", label: "Nepali" },
+    { value: "sinhala", label: "Sinhala" },
+    { value: "finnish", label: "Finnish" },
+    { value: "norwegian", label: "Norwegian" },
+    { value: "danish", label: "Danish" },
+    { value: "ukrainian", label: "Ukrainian" },
+    { value: "bhojpuri", label: "Bhojpuri" },
+    { value: "maithili", label: "Maithili" },
+    { value: "sanskrit", label: "Sanskrit" }
+  ];
+
+  const targetAudiences = [
+    { value: "general", label: "General" },
+    { value: "teenagers", label: "Teenagers" },
+    { value: "professionals", label: "Professionals" },
+    { value: "students", label: "Students" },
+    { value: "entrepreneurs", label: "Entrepreneurs" },
+    { value: "parents", label: "Parents" },
+    { value: "gamers", label: "Gamers" },
+    { value: "fitness-enthusiasts", label: "Fitness Enthusiasts" },
+    { value: "techies", label: "Tech Enthusiasts" },
+    { value: "creatives", label: "Creatives (Artists/Designers)" },
+    { value: "foodies", label: "Foodies" },
+    { value: "travelers", label: "Travelers" },
+    { value: "investors", label: "Investors" },
+    { value: "students-college", label: "College Students" },
+    { value: "job-seekers", label: "Job Seekers" },
+    { value: "freelancers", label: "Freelancers" },
+    { value: "small-business-owners", label: "Small Business Owners" },
+    { value: "content-creators", label: "Content Creators" },
+    { value: "activists", label: "Social Activists" },
+    { value: "seniors", label: "Seniors" }
+  ];
+
+  const captionLengths = [
+    { value: "very-short", label: "Very Short (<30 chars)" },
+    { value: "short", label: "Short (30-80 chars)" },
+    { value: "medium", label: "Medium (80-150 chars)" },
+    { value: "long", label: "Long (150-220 chars)" },
+    { value: "max", label: "Max (220-280 chars)" }
+  ];
+
+  const moods = [
+    { value: "happy", label: "Happy" },
+    { value: "inspirational", label: "Inspirational" },
+    { value: "sarcastic", label: "Sarcastic" },
+    { value: "nostalgic", label: "Nostalgic" },
+    { value: "curious", label: "Curious" },
+    { value: "excited", label: "Excited" },
+    { value: "calm", label: "Calm" },
+    { value: "angry", label: "Angry" },
+    { value: "hopeful", label: "Hopeful" },
+    { value: "playful", label: "Playful" },
+    { value: "serious", label: "Serious" },
+    { value: "romantic", label: "Romantic" },
+    { value: "confident", label: "Confident" },
+    { value: "mysterious", label: "Mysterious" },
+    { value: "grateful", label: "Grateful" }
+  ];
+
+  const emojiIntensities = [
+    { value: "none", label: "No Emojis" },
+    { value: "minimal", label: "Minimal Emojis" },
+    { value: "moderate", label: "Moderate Emojis" },
+    { value: "heavy", label: "Heavy Emojis" }
+  ];
   
   // UI states
   const [msg, setMsg] = useState("");
@@ -198,20 +358,14 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Configuration options will be mapped here */}
             {[
-              { label: "Interest", value: interest, setter: setInterest, options: [
-                "Tech", "Funny", "Finance", "Memes", "Motivation", "DevLife", "Gaming"
-              ]},
-              { label: "Caption Style", value: captionType, setter: setCaptionType, options: [
-                { value: "motivational", label: "Motivational" },
-                { value: "funny", label: "Funny" },
-                { value: "savage", label: "Savage" },
-                { value: "chill", label: "Chill" }
-              ]},
-              { label: "Language", value: language, setter: setLanguage, options: [
-                { value: "english", label: "English" },
-                { value: "hindi", label: "Hindi" },
-                { value: "spanish", label: "Spanish" }
-              ]}
+              { label: "Interest", value: interest, setter: setInterest, options: interests.map(item => item) },
+              { label: "Caption Style", value: captionType, setter: setCaptionType, options: captionStyles },
+              { label: "Gender", value: gender, setter: setGender, options: genders },
+              { label: "Language", value: language, setter: setLanguage, options: languages },
+              { label: "Target Audience", value: targetAudience, setter: setTargetAudience, options: targetAudiences },
+              { label: "Caption Length", value: captionLength, setter: setCaptionLength, options: captionLengths },
+              { label: "Mood", value: mood, setter: setMood, options: moods },
+              { label: "Emoji Intensity", value: emojiIntensity, setter: setEmojiIntensity, options: emojiIntensities }
             ].map((config, index) => (
               <motion.div
                 key={config.label}
