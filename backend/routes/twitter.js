@@ -1,0 +1,43 @@
+const express = require("express");
+const passport = require("passport");
+const router = express.Router();
+const User = require("../models/user.model");
+require("dotenv").config()
+
+console.log(`${process.env.FRONTEND_URL}`)
+
+router.get("/login", passport.authenticate("twitter"))
+router.get(
+  "/callback",
+  passport.authenticate("twitter", {
+    failureRedirect: "/auth/twitter/failure",
+  }),
+ async (req, res) => {
+  
+    req.session.token = req.user.token;
+    req.session.secret = req.user.tokenSecret;
+ 
+    const user = new User({
+      username: req.user.username,
+      displayName: req.user.displayName,
+      twitterId: req.user.id,
+      avatar: req.user.photos[0]?.value,
+    });
+await user.save()
+
+  
+    res.redirect(`${process.env.FRONTEND_URL}`);
+  }
+);
+
+router.get("/failure", (req, res) => {
+  res.send("❌ Twitter login failed.");
+});
+
+router.get("/logout", (req, res) => {
+  req.logout(() => {
+    res.redirect(`${process.env.FRONTEND_URL}`);
+  });
+});
+
+module.exports = router;
