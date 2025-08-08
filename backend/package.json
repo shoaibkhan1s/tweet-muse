@@ -23,6 +23,7 @@
     "passport": "^0.7.0",
     "passport-local-mongoose": "^8.0.0",
     "passport-twitter": "^1.0.4",
+    "sharp": "^0.34.3",
     "twitter-api-v2": "^1.24.0"
   }
 }
