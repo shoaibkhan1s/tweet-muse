@@ -15,7 +15,7 @@ const userRoutes = require("./routes/userRoutes");
 const MongoStore = require('connect-mongo');
 dotenv.config();
 
-
+app.set("trust proxy", 1);
 async function main() {
   await mongoose.connect(process.env.MONGO_URI);
 }
