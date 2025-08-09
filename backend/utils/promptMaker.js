@@ -130,6 +130,11 @@ ${
 The person(s) should have body language and facial expressions that reflect the tone of the caption.`
     : `Show only the ${setting} in full atmospheric detail. Do not include any people.`
 }
+  Specify a fitting camera shot like close-up, macro shot, wide-angle, or extreme close-up...
+
+Use lighting to match the tone — examples: soft lighting, cinematic light, studio lighting, or golden hour.
+
+
 
 Use soft, natural lighting or warm indoor tones.
 
