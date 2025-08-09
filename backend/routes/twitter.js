@@ -26,7 +26,7 @@ router.get(
 await user.save()
 
   
-    res.redirect(`${process.env.BASE_URL}`);
+    res.redirect(`${process.env.FRONTEND_URL}`);
   }
 );
 
@@ -36,7 +36,7 @@ router.get("/failure", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.logout(() => {
-    res.redirect(`${process.env.BASE_URL}`);
+    res.redirect(`${process.env.FRONTEND_URL}`);
   });
 });
 
