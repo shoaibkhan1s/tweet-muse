@@ -12,6 +12,7 @@ const fs = require("fs");
 const twitterRoutes = require("./routes/twitter");
 const tweetRoutes = require("./routes/tweetRoutes");
 const userRoutes = require("./routes/userRoutes");
+const MongoStore = require('connect-mongo');
 dotenv.config();
 
 
@@ -42,6 +43,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
     cookie: {
       maxAge: 7 * 24 * 60 * 60 * 1000,
        secure: true, 
