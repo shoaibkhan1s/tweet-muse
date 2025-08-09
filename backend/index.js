@@ -44,7 +44,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      sameSite: "lax",
+       secure: true, 
+  sameSite: 'none'
     },
   })
 );
