@@ -35,6 +35,7 @@ app.use(cors({
   origin: `${process.env.FRONTEND_URL}`,
   credentials: true,
 }));
+
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
@@ -46,7 +47,8 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
     cookie: {
       maxAge: 7 * 24 * 60 * 60 * 1000,
-       secure: true, 
+  httpOnly: true,      
+  secure: true,        
   sameSite: 'none'
     },
   })
