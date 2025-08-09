@@ -4,7 +4,7 @@ const router = express.Router();
 const User = require("../models/user.model");
 require("dotenv").config()
 
-console.log(`${process.env.FRONTEND_URL}`)
+
 
 router.get("/login", passport.authenticate("twitter"))
 router.get(
@@ -26,7 +26,7 @@ router.get(
 await user.save()
 
   
-    res.redirect(`${process.env.FRONTEND_URL}`);
+    res.redirect(`${process.env.BASE_URL}`);
   }
 );
 
@@ -36,7 +36,7 @@ router.get("/failure", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.logout(() => {
-    res.redirect(`${process.env.FRONTEND_URL}`);
+    res.redirect(`${process.env.BASE_URL}`);
   });
 });
 
