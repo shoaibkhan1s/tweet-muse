@@ -24,11 +24,21 @@ router.get(
       avatar: req.user.photos[0]?.value,
     });
 await user.save()
-    res.redirect(`${process.env.FRONTEND_URL}`);
-  }catch(err){
+
+      req.session.save((err) => {
+        if (err) {
+          console.error("Session save error:", err);
+          return res.status(500).send("Error saving session");
+        }
+        
+        res.redirect(`${process.env.FRONTEND_URL}`);
+      });
+    
+    }catch(err){
     console.log(err)
   }
-});
+  }
+);
 
 router.get("/failure", (req, res) => {
   res.send("❌ Twitter login failed.");
