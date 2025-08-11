@@ -13,7 +13,7 @@ router.get(
     failureRedirect: "/auth/twitter/failure",
   }),
  async (req, res) => {
-  
+  try{
     req.session.token = req.user.token;
     req.session.secret = req.user.tokenSecret;
  
@@ -24,20 +24,24 @@ router.get(
       avatar: req.user.photos[0]?.value,
     });
 await user.save()
-
-  
     res.redirect(`${process.env.FRONTEND_URL}`);
+  }catch(err){
+    console.log(err)
   }
-);
+});
 
 router.get("/failure", (req, res) => {
   res.send("❌ Twitter login failed.");
 });
 
 router.get("/logout", (req, res) => {
+  try{
   req.logout(() => {
-    res.redirect(`${process.env.FRONTEND_URL}`);
-  });
+    res.redirect(`${process.env.FRONTEND_URL}`)
+  })
+  }catch(err){
+    console.log(err)
+  }
 });
 
 module.exports = router;

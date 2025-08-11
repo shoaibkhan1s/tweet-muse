@@ -28,6 +28,7 @@ router.get("/seeTweets", isLoggedIn, async (req, res) => {
 });
 
 router.get("/auth/twitter/session", (req, res) => {
+  try{
   if (req.session.token && req.session.secret) {
     res.json({
       user: req.user,
@@ -37,6 +38,9 @@ router.get("/auth/twitter/session", (req, res) => {
   } else {
     res.status(401).json({ error: "No active session" });
   }
+}catch(err){
+  console.log("error in /auth/twitter/session : ", err)
+}
 });
 
 module.exports = router;
