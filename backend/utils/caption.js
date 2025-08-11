@@ -159,7 +159,7 @@ Just the tweet — like it was copied straight from a real timeline.`,
 
     return response.text;
   } catch (error) {
-    throw new error();
+   console.log(error)
   }
 }
 

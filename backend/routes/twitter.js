@@ -17,13 +17,16 @@ router.get(
     req.session.token = req.user.token;
     req.session.secret = req.user.tokenSecret;
  
-    const user = new User({
-      username: req.user.username,
-      displayName: req.user.displayName,
-      twitterId: req.user.id,
-      avatar: req.user.photos[0]?.value,
-    });
-await user.save()
+      let user = await User.findOne({ twitterId: req.user.id });
+      if (!user) {
+        user = await new User({
+          username: req.user.username,
+          displayName: req.user.displayName,
+          twitterId: req.user.id,
+          avatar: req.user.photos?.[0]?.value,
+        });
+        await user.save()
+      }
 
       req.session.save((err) => {
         if (err) {

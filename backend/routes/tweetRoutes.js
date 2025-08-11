@@ -96,6 +96,9 @@ router.post("/", isLoggedIn, async (req, res) => {
     );
 
     const prompt = await generateImagePrompt(caption, gender, interest);
+
+   console.log(caption)
+   console.log(prompt)
    
      const imageUrl = `https://pollinations.ai/p/${encodeURIComponent(prompt)}?width=1024&height=1024&seed=42&model=flux&enhance=true`;
 
@@ -131,6 +134,7 @@ router.post("/", isLoggedIn, async (req, res) => {
       imageUrl: publicImageUrl,
       filename: croppedFilename,
     });
+    
   } catch (err) {
  
     res.status(err.status || 500).json({ error: err.message || "Tweet generation failed" });
