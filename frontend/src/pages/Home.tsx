@@ -246,7 +246,10 @@ const [isPostBtnClick, setIsPostBtnClick] = useState(false);
         emojiIntensity,
       });
       setImage(res.data.image || null);
+
       setMsg(res.data.caption || "Tweet generated!");
+      console.log(image)
+      console.log(msg)
       setFilename(res.data.filename || "");
     } catch (err) {
       setMsg("❌ Something went wrong!");

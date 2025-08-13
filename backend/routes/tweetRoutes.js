@@ -126,7 +126,7 @@ router.post("/", isLoggedIn, async (req, res) => {
     const base64Image = newBuffer.toString("base64");
 
     const publicImageUrl = `${req.protocol}://${req.get("host")}/uploads/${croppedFilename}`;
-
+console.log(publicImageUrl)
     res.json({
       success: true,
       caption,
