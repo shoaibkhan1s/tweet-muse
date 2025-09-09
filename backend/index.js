@@ -6,7 +6,7 @@ const TwitterStrategy = require("passport-twitter").Strategy;
 const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const multer = require("multer");
+
 const path = require("path");
 const fs = require("fs");
 const MongoStore = require("connect-mongo");
@@ -30,12 +30,6 @@ app.set("trust proxy", 1);
   }
 })();
 
-// Multer storage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname)),
-});
-const upload = multer({ storage });
 
 // CORS config
 app.use(cors({
@@ -64,7 +58,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use("/uploads", express.static("uploads"));
+
 
 // Passport serialize/deserialize
 passport.serializeUser((user, done) => done(null, user));
